@@ -98,6 +98,7 @@ typedef struct CRGB
      */
 	uint16_t Wheel(uint16_t WheelPos)
 	{
+        WheelPos = WheelPos % 384;
 	    switch(WheelPos / 128)
 	    {
 	        case 0:

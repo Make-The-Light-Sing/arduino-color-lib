@@ -1,8 +1,27 @@
+#######################################
+# Syntax Coloring Map
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
 CRGB	KEYWORD1
-color	KEYWORD2
 fireColorPalette	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+color	KEYWORD2
 Wheel	KEYWORD2
 fireColor	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+fireColorPalette	KEYWORD1
 CBlack	KEYWORD1
 CWhite	KEYWORD1
 CRed	KEYWORD1
