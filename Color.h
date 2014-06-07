@@ -38,7 +38,13 @@ typedef struct CRGB
 	unsigned char r;
 	unsigned char g;
 
-	// Inline operator to set all colors with an RGB word
+	/**
+     * Inline operator to set all colors with an RGB word
+     *
+     * @param uint32_t c
+     *
+     * @return uint32_t
+     */
 	inline uint32_t operator= (uint32_t c) {
 		r = (c >> 16) & 0xff;
 		g = (c >> 8) & 0xff;
@@ -46,14 +52,26 @@ typedef struct CRGB
 		return c;
 	}
 
-	// Method to define colors in the usual order : Red, Green, Blue
+	/**
+     * Method to define colors in the usual order : Red, Green, Blue
+     *
+     * @param unsigned char n_r Red color
+     * @param unsigned char n_g Green color
+     * @param unsigned char n_b Blue color
+     */
 	void color(unsigned char n_r, unsigned char n_g, unsigned char n_b) {
 		r = n_r;
 		g = n_g;
 		b = n_b;
 	}
 
-	// Method to fix color by a wheel position from 0 to 384
+	/**
+     * Method to fix color by a wheel position from 0 to 384
+     *
+     * @param uint16_t WheelPos a value between 0 and 383
+     * 
+     * @return uint2+_t
+     */
 	uint16_t Wheel(uint16_t WheelPos)
 	{
 	    switch(WheelPos / 128)
@@ -77,7 +95,13 @@ typedef struct CRGB
 	    return WheelPos;
 	}
 
-	// Method to define color from the Fire palette defined upper, and stored directly in Flash Memory
+	/**
+     * Method to define color from the Fire palette defined upper, and stored directly in Flash Memory
+     *
+     * @param unsigned char x Index in Fire palette
+
+     * @return unsigned char
+     */
 	unsigned char fireColor(unsigned char x)
 	{
 	    if (x > 128) x = 128;
