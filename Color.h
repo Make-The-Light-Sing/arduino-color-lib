@@ -36,20 +36,7 @@ PROGMEM const unsigned char fireColorPalette[] = {
  *
  * @return float
  */
-float Hue_2_RGB( float v1, float v2, float vH )             //Function Hue_2_RGB
-{
-    if ( vH < 0 ) 
-        vH += 1;
-    if ( vH > 1 ) 
-        vH -= 1;
-    if ( ( 6 * vH ) < 1 ) 
-        return ( v1 + ( v2 - v1 ) * 6 * vH );
-    if ( ( 2 * vH ) < 1 ) 
-        return ( v2 );
-    if ( ( 3 * vH ) < 2 ) 
-        return ( v1 + ( v2 - v1 ) * (.66-vH) * 6 );
-    return ( v1 );
-}
+float Hue_2_RGB( float v1, float v2, float vH );
 
 /**
  * Color structure with different helper method to easly set color by different ways
