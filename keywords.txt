@@ -21,12 +21,12 @@ fireColor	KEYWORD2
 # Constants (LITERAL1)
 #######################################
 
-fireColorPalette	KEYWORD1
-CBlack	KEYWORD1
-CWhite	KEYWORD1
-CRed	KEYWORD1
-CBlue	KEYWORD1
-CGreen	KEYWORD1
-CYellow	KEYWORD1
-CCyan	KEYWORD1
-CMagenta	KEYWORD1
+fireColorPalette	LITERAL1
+CBlack	LITERAL1
+CWhite	LITERAL1
+CRed	LITERAL1
+CBlue	LITERAL1
+CGreen	LITERAL1
+CYellow	LITERAL1
+CCyan	LITERAL1
+CMagenta	LITERAL1
