@@ -28,6 +28,30 @@ PROGMEM const unsigned char fireColorPalette[] = {
 };
 
 /**
+ * Calculate R G B from Hue
+ *
+ * @param  float v1
+ * @param  float v2
+ * @param  float vH
+ *
+ * @return float
+ */
+float Hue_2_RGB( float v1, float v2, float vH )             //Function Hue_2_RGB
+{
+    if ( vH < 0 ) 
+        vH += 1;
+    if ( vH > 1 ) 
+        vH -= 1;
+    if ( ( 6 * vH ) < 1 ) 
+        return ( v1 + ( v2 - v1 ) * 6 * vH );
+    if ( ( 2 * vH ) < 1 ) 
+        return ( v2 );
+    if ( ( 3 * vH ) < 2 ) 
+        return ( v1 + ( v2 - v1 ) * (.66-vH) * 6 );
+    return ( v1 );
+}
+
+/**
  * Color structure with different helper method to easly set color by different ways
  */
 typedef struct CRGB
@@ -66,7 +90,7 @@ typedef struct CRGB
 	}
 
 	/**
-     * Method to fix color by a wheel position from 0 to 384
+     * Method to define color by a wheel position from 0 to 384
      *
      * @param uint16_t WheelPos a value between 0 and 383
      * 
@@ -94,6 +118,40 @@ typedef struct CRGB
 	    }
 	    return WheelPos;
 	}
+
+    /**
+     * Calculate RGB color from Hue/Saturation/Lightness
+     *
+     * @param  float H     Hue from 0 to 1
+     * @param  float S     Saturation from 0 to 1
+     * @param  float L     Lightness from 0 to 1
+     *
+     * @return struct CRGB
+     */
+    void HSL(float H, float S, float L)
+    {
+        float var_1;
+        float var_2;
+        float Hu=H+.33;
+        float Hd=H-.33;
+        if ( S == 0 )                       //HSL from 0 to 1
+        {
+            r = L * 255;                      //RGB results from 0 to 255
+            g = L * 255;
+            b = L * 255;
+        }
+        else
+        {
+            if ( L < 0.5 ) 
+                var_2 = L * ( 1 + S );
+            else
+                var_2 = ( L + S ) - ( S * L );
+            var_1 = 2 * L - var_2;
+            r = round(255 * Hue_2_RGB( var_1, var_2, Hu ));
+            g = round(255 * Hue_2_RGB( var_1, var_2, H ));
+            b = round(255 * Hue_2_RGB( var_1, var_2, Hd ));
+        }
+    }
 
 	/**
      * Method to define color from the Fire palette defined upper, and stored directly in Flash Memory
